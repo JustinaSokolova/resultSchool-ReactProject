@@ -8,9 +8,10 @@ const Users = () => {
         setUsers(prevState => prevState.filter(item => item._id !== userID))
     }
 
-    const renderPhrase = () => {
+    const renderPhrase = (number) => {
         let text = '';
-        (users.length === 2 || users.length === 3 || users.length === 4) ? 
+        let numberUsers = String(number);
+        (numberUsers.endsWith('2')|| numberUsers.endsWith('3') || numberUsers.endsWith('4')) && !numberUsers.endsWith('12')  ? 
         text = users.length + " человека тусанут с тобой сегодня" :
         text = users.length + " человек тусанет с тобой сегодня"
         return text;
@@ -26,7 +27,7 @@ const Users = () => {
         <>
         <h3>
             <span className={classesPhrase()}>
-                {renderPhrase()}
+                {renderPhrase(users.length)}
             </span>
         </h3>
         <table className = "table table-striped table-bordered">
