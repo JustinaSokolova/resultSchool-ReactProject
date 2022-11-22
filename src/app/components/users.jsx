@@ -6,7 +6,7 @@ const Users = (props) => {
   return (
     <>
       {props.users.length > 0 && (
-        <table className='table'>
+        <table className='table table-bordered'>
           <thead>
             <tr>
               <th scope='col'>Имя</th>

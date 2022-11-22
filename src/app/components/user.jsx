@@ -19,7 +19,7 @@ const User = (props) => {
           onToggleBookmark={props.onToggleBookmark}
         />
       </td>
-      <td>
+      <td  className='d-flex justify-content-center'>
         <button
           className='btn btn-danger'
           onClick={() => props.onDelete(props._id)}
