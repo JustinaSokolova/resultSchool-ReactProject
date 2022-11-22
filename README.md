@@ -1,3 +1,7 @@
+### link for App - 
+# https://justinasokolova.github.io/resultSchool-ReactProject/
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
