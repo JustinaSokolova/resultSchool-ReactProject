@@ -1,6 +1,7 @@
-import React from 'react'
-import Qualities from './qualities'
-import Bookmark from './bookmark'
+import React from "react";
+import Qualities from "./qualities";
+import Bookmark from "./bookmark";
+import PropTypes from "prop-types";
 
 const User = (props) => {
   return (
@@ -19,16 +20,27 @@ const User = (props) => {
           onToggleBookmark={props.onToggleBookmark}
         />
       </td>
-      <td  className='d-flex justify-content-center'>
+      <td className="d-flex justify-content-center">
         <button
-          className='btn btn-danger'
+          className="btn btn-danger"
           onClick={() => props.onDelete(props._id)}
         >
           Delete
         </button>
       </td>
     </tr>
-  )
-}
+  );
+};
 
-export default User
+User.propTypes = {
+  name: PropTypes.string.isRequired,
+  profession: PropTypes.object.isRequired,
+  completedMeetings: PropTypes.number.isRequired,
+  rate: PropTypes.number.isRequired,
+  _id: PropTypes.string.isRequired,
+  bookmark: PropTypes.bool.isRequired,
+  onToggleBookmark: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
+
+export default User;
