@@ -12,7 +12,7 @@ const User = (props) => {
       </td>
       <td>{props.profession.name}</td>
       <td>{props.completedMeetings}</td>
-      <td>{props.rate}/5</td>
+      <td>{props.rate} /5</td>
       <td>
         <Bookmark
           userId={props._id}
