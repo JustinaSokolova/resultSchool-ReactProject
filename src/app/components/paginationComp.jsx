@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import _ from "lodash";
 import PropTypes from "prop-types";
 
 const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
   const pageCount = Math.ceil(itemsCount / pageSize);
-  if (pageCount === 1) return null;
+  // if (pageCount === 1) return null;
 
   const pages = _.range(1, pageCount + 1);
+
+  useEffect(() => {
+    if (currentPage > pageCount) onPageChange(pageCount);
+  }, [itemsCount]);
 
   return (
     <>
       <nav
         className="d-flex align-content-center justify-content-center"
-        aria-label="Page navigation example"
       >
         <ul className="pagination">
           {pages.map((page) => (
