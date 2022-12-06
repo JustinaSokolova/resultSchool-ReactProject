@@ -1,15 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const BookMark = (props) => {
+const BookMark = ({ status, ...rest }) => {
   return (
     <div className="d-flex justify-content-center">
-      <button
+      <button {...rest}
         className="btn border-0"
-        onClick={() => props.onToggleBookmark(props.userId)}
       >
         <i
-          className={"bi " + (props.bookmark ? "bi-heart-fill" : "bi-heart")}
+          className={"bi " + (status ? "bi-heart-fill" : "bi-heart")}
         ></i>
       </button>
     </div>
@@ -17,9 +16,9 @@ const BookMark = (props) => {
 };
 
 BookMark.propTypes = {
-  onToggleBookmark: PropTypes.func.isRequired,
-  userId: PropTypes.string.isRequired,
-  bookmark: PropTypes.bool.isRequired,
+  onToggleBookmark: PropTypes.func,
+  userId: PropTypes.string,
+  status: PropTypes.bool,
 };
 
 export default BookMark;

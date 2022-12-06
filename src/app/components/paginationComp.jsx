@@ -14,9 +14,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
 
   return (
     <>
-      <nav
-        className="d-flex align-content-center justify-content-center"
-      >
+      <nav className="d-flex align-content-center justify-content-center">
         <ul className="pagination">
           {pages.map((page) => (
             <li

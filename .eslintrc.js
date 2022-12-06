@@ -28,5 +28,6 @@ module.exports = {
         functions: "never",
       },
     ],
+    "multiline-ternary": ["error", "always-multiline"],
   },
 };
