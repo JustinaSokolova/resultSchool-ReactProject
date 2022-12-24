@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Pagination from "./paginationComp";
+import Pagination from "../components/paginationComp";
 import { paginate } from "../utils/paginate";
 import PropTypes from "prop-types";
 import api from "../api";
-import GroupList from "./groupList";
-import SearchStatus from "./searchStatus";
-import UserTable from "./userTable";
+import GroupList from "../components/groupList";
+import SearchStatus from "../components/searchStatus";
+import UserTable from "../components/userTable";
 import _ from "lodash";
 
 const Users = () => {
@@ -68,30 +68,32 @@ const Users = () => {
     };
 
     return (
-      <div className="d-flex">
-        <div className="d-flex flex-column flex-shrink-0 p-3">
-          <GroupList
-            items={professions}
-            selectedItem={selectedProf}
-            onItemSelect={handleProfessionSelect}
-          />
-          <button className="btn btn-secondary mt-2" onClick={clearFilter}>
-            Очистить
-          </button>
+      <>
+        <div className="d-flex m-3">
+          <div className="d-flex flex-column flex-shrink-0 p-3">
+            <GroupList
+              items={professions}
+              selectedItem={selectedProf}
+              onItemSelect={handleProfessionSelect}
+            />
+            <button className="btn btn-secondary mt-2" onClick={clearFilter}>
+              Очистить
+            </button>
+          </div>
+          <div className="d-flex flex-column">
+            {professions && <SearchStatus length={count} />}
+            {count > 0 && <UserTable users={userCrop}
+              onSort={handleSort} selectedSort={sortBy}
+              onDelete={handleDelete} onToggleBookmark={handleToggleBookmark} />}
+            <Pagination
+              itemsCount={count}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
+          </div>
         </div>
-        <div className="d-flex flex-column">
-          {professions && <SearchStatus length={count} />}
-          {count > 0 && <UserTable users={userCrop}
-            onSort={handleSort} selectedSort={sortBy}
-            onDelete={handleDelete} onToggleBookmark={handleToggleBookmark} />}
-          <Pagination
-            itemsCount={count}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChange={handlePageChange}
-          />
-        </div>
-      </div>
+      </>
     );
   } return (
     <p className="fs-4 m-4">Loading...</p>
