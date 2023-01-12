@@ -17,20 +17,26 @@ const UserPage = () => {
     history.push("/users");
   };
 
-  return (user
-    ? (<div className="p-3 m-3">
-      <h3>{user.name}</h3>
-      <p>Профессия: {user.profession.name}</p>
-      <p>
-        Качества: <QualitiesList qualities={user.qualities} />
-      </p>
-      <p>Встретился, раз: {user.completedMeetings}</p>
-      <p>Оценка: {user.rate} / 5</p>
-      <button onClick={handleUsers} type="button" className="btn btn-primary">Все пользователи</button>
-    </div>
+  return user
+    ? (
+      <div className="d-flex justify-content-center align-items-center">
+        <div className="d-flex flex-column p-4 m-3 shadow w-25">
+          <h3>{user.name}</h3>
+          <p>Профессия: {user.profession.name}</p>
+          <p>
+            Качества: <QualitiesList qualities={user.qualities} />
+          </p>
+          <p>Встретился, раз: {user.completedMeetings}</p>
+          <p>Оценка: {user.rate} / 5</p>
+          <button onClick={handleUsers} type="button" className="btn btn-outline-primary align-self-center">
+            Все пользователи
+          </button>
+        </div>
+      </div>
     )
-    : <p className="fs-4 m-4">Loading...</p>
-  );
+    : (
+      <p className="d-flex justify-content-center fs-4 m-4">Loading...</p>
+    );
 };
 
 UserPage.propTypes = {

@@ -4,7 +4,16 @@ import BookMark from "./bookmark";
 import QualitiesList from "./qualitiesList";
 import Table from "./table";
 
-const UserTable = ({ users, onSort, selectedSort, userId, bookmark, onToggleBookmark, onDelete, ...rest }) => {
+const UserTable = ({
+  users,
+  onSort,
+  selectedSort,
+  userId,
+  bookmark,
+  onToggleBookmark,
+  onDelete,
+  ...rest
+}) => {
   const columns = {
     name: { path: "name", name: "Имя" },
     qualities: {
@@ -17,16 +26,16 @@ const UserTable = ({ users, onSort, selectedSort, userId, bookmark, onToggleBook
     bookmark: {
       path: "bookmark",
       name: "Избранное",
-      component: (user) => <BookMark
-        status={user.bookmark}
-        onClick={() => onToggleBookmark(user._id)} />,
+      component: (user) => (
+        <BookMark
+          status={user.bookmark}
+          onClick={() => onToggleBookmark(user._id)}
+        />
+      ),
     },
     delete: {
       component: (user) => (
-        <button
-          className="btn btn-danger"
-          onClick={() => onDelete(user._id)}
-        >
+        <button className="btn btn-danger" onClick={() => onDelete(user._id)}>
           Delete
         </button>
       ),
@@ -34,7 +43,12 @@ const UserTable = ({ users, onSort, selectedSort, userId, bookmark, onToggleBook
   };
 
   return (
-    <Table onSort={onSort} selectedSort={selectedSort} columns={columns} data={users}/>
+    <Table
+      onSort={onSort}
+      selectedSort={selectedSort}
+      columns={columns}
+      data={users}
+    />
   );
 };
 

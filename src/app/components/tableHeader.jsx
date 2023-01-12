@@ -15,7 +15,16 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
 
   const handleButtonsArrow = (item) => {
     if (selectedSort.path === item) {
-      return (<i className={"p-2 bi " + (selectedSort.order === "asc" ? "bi-caret-up-fill" : "bi-caret-down-fill")}></i>);
+      return (
+        <i
+          className={
+            "p-2 bi " +
+            (selectedSort.order === "asc"
+              ? "bi-caret-up-fill"
+              : "bi-caret-down-fill")
+          }
+        ></i>
+      );
     }
   };
 
@@ -23,12 +32,17 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
     <thead>
       <tr>
         {Object.keys(columns).map((column) => (
-          <th key={column} onClick={
-            columns[column].path
-              ? () => handleSort(columns[column].path)
-              : undefined}
-          {...{ role: columns[column].path && "button" }}
-          scope="col">{columns[column].name}
+          <th
+            key={column}
+            onClick={
+              columns[column].path
+                ? () => handleSort(columns[column].path)
+                : undefined
+            }
+            {...{ role: columns[column].path && "button" }}
+            scope="col"
+          >
+            {columns[column].name}
             {columns[column].path && handleButtonsArrow(columns[column].path)}
           </th>
         ))}
