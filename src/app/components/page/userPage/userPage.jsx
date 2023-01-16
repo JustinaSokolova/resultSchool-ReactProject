@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import api from "../api";
-import QualitiesList from "./qualitiesList";
+import api from "../../../api";
+import QualitiesList from "../../ui/qualities";
 import { useHistory, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -14,7 +14,7 @@ const UserPage = () => {
   }, []);
 
   const handleUsers = () => {
-    history.push("/users");
+    history.push(`${history.location.pathname}/edit`);
   };
 
   return user
@@ -29,7 +29,7 @@ const UserPage = () => {
           <p>Встретился, раз: {user.completedMeetings}</p>
           <p>Оценка: {user.rate} / 5</p>
           <button onClick={handleUsers} type="button" className="btn btn-outline-primary align-self-center">
-            Все пользователи
+            Изменить
           </button>
         </div>
       </div>

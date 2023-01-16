@@ -13,8 +13,8 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
     }
   };
 
-  const handleButtonsArrow = (item) => {
-    if (selectedSort.path === item) {
+  const handleButtonsArrow = (selectedSort, currentPath) => {
+    if (selectedSort.path === currentPath) {
       return (
         <i
           className={
@@ -26,6 +26,7 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
         ></i>
       );
     }
+    return null;
   };
 
   return (
@@ -43,7 +44,7 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
             scope="col"
           >
             {columns[column].name}
-            {columns[column].path && handleButtonsArrow(columns[column].path)}
+            {handleButtonsArrow(selectedSort, columns[column].path)}
           </th>
         ))}
       </tr>
