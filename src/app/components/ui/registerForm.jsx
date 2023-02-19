@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TextField from "../form/textField";
-import { validator } from "../../utils/valodator";
+import { validator } from "../../utils/validator";
 import api from "../../api";
 import SelectField from "../form/selectField";
 import RadioField from "../form/radioField";
@@ -8,7 +8,14 @@ import MultiSelectField from "../form/multiSelectField";
 import CheckBoxField from "../form/checkBoxField";
 
 const RegisterForm = () => {
-  const [data, setData] = useState({ email: "", password: "", profession: "", sex: "male", qualities: [], license: false });
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+    profession: "",
+    sex: "male",
+    qualities: [],
+    license: false,
+  });
   const [professions, setProfessions] = useState();
   const [errors, setErrors] = useState({});
   const [qualities, setQualities] = useState([]);
@@ -72,7 +79,8 @@ const RegisterForm = () => {
     },
     license: {
       isRequired: {
-        message: "Вы не можете использовать наш сервис без подтверждения лицензионного соглашения",
+        message:
+          "Вы не можете использовать наш сервис без подтверждения лицензионного соглашения",
       },
     },
   };
@@ -159,7 +167,11 @@ const RegisterForm = () => {
       />
       <RadioField
         label="Выберите Ваш пол:"
-        options={[{ name: "Male", value: "male" }, { name: "Female", value: "female" }, { name: "Other", value: "other" }]}
+        options={[
+          { name: "Male", value: "male" },
+          { name: "Female", value: "female" },
+          { name: "Other", value: "other" },
+        ]}
         name="sex"
         value={data.sex}
         onChange={handleChange}
@@ -177,9 +189,18 @@ const RegisterForm = () => {
         name="license"
         error={errors.license}
       >
-        Подтвердить <a className="text-reset" type="button">лицензионное соглашение</a>
+        Подтвердить{" "}
+        <a className="text-reset" type="button">
+          лицензионное соглашение
+        </a>
       </CheckBoxField>
-      <button className="btn btn-primary align-self-center" type="submit" disabled={!isValid}>Отправить</button>
+      <button
+        className="btn btn-primary align-self-center"
+        type="submit"
+        disabled={!isValid}
+      >
+        Отправить
+      </button>
     </form>
   );
 };

@@ -4,7 +4,13 @@ import PropTypes from "prop-types";
 const SearchUser = ({ onChange, value }) => {
   return (
     <div>
-      <input className="form-control mb-3" type="text" placeholder="Search..." onChange={onChange} value={value} />
+      <input
+        className="form-control mb-3"
+        type="text"
+        placeholder="Search..."
+        onChange={onChange}
+        value={value}
+      />
     </div>
   );
 };

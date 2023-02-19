@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useState, useEffect } from "react";
 import Pagination from "../../common/paginationComp";
 import { paginate } from "../../../utils/paginate";
@@ -68,12 +69,12 @@ const UsersListPage = () => {
 
   if (users) {
     const filteredUsers = searchInput
-      ? users.filter(
-        (user) => user.name.toLowerCase().includes(searchInput.toLowerCase()))
+      ? users.filter((user) =>
+          user.name.toLowerCase().includes(searchInput.toLowerCase())
+        )
       : selectedProf
-        ? users.filter(
-          (user) => user.profession._id === selectedProf._id)
-        : users;
+      ? users.filter((user) => user.profession._id === selectedProf._id)
+      : users;
 
     const count = filteredUsers.length;
     const sortedUsers = _.orderBy(filteredUsers, [sortBy.path], [sortBy.order]);
@@ -94,7 +95,7 @@ const UsersListPage = () => {
           </div>
           <div className="d-flex flex-column w-75">
             {professions && <SearchStatus length={count} />}
-            <SearchUser onChange={handleSearch} value={searchInput}/>
+            <SearchUser onChange={handleSearch} value={searchInput} />
             {count > 0 && (
               <UserTable
                 users={userCrop}

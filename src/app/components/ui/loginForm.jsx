@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TextField from "../form/textField";
-import { validator } from "../../utils/valodator";
+import { validator } from "../../utils/validator";
 import CheckBoxField from "../form/checkBoxField";
 // import * as yup from "yup";
 
@@ -103,9 +103,14 @@ const LoginForm = () => {
       <CheckBoxField value={data.stayOn} onChange={handleChange} name="stayOn">
         Оставаться в системе
       </CheckBoxField>
-      <button className="btn btn-primary align-self-center" type="submit" disabled={!isValid}>Отправить</button>
+      <button
+        className="btn btn-primary align-self-center"
+        type="submit"
+        disabled={!isValid}
+      >
+        Отправить
+      </button>
     </form>
-
   );
 };
 

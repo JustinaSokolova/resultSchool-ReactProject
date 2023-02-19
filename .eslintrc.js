@@ -3,7 +3,11 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["plugin:react/recommended", "standard"],
+  extends: [
+    "plugin:react/recommended",
+    "standard",
+    "plugin:prettier/recommended",
+  ],
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
@@ -29,6 +33,6 @@ module.exports = {
         functions: "never",
       },
     ],
-    "multiline-ternary": ["error", "always-multiline"],
+    "multiline-ternary": ["off"],
   },
 };

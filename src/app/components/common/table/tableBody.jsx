@@ -20,16 +20,15 @@ const TableBody = ({ data, columns }) => {
       {data.map((item) => (
         <tr key={item._id}>
           {Object.keys(columns).map((column) =>
-            column === "name"
-              ? (
-                <td key={column}>
-                  <Link to={"/users/" + item._id}>
-                    {renderContent(item, column)}
-                  </Link>
-                </td>)
-              : (
-                <td key={column}>{renderContent(item, column)}</td>
-              )
+            column === "name" ? (
+              <td key={column}>
+                <Link to={"/users/" + item._id}>
+                  {renderContent(item, column)}
+                </Link>
+              </td>
+            ) : (
+              <td key={column}>{renderContent(item, column)}</td>
+            )
           )}
         </tr>
       ))}
