@@ -2,9 +2,14 @@ import React, { useState, useEffect } from "react";
 import TextField from "../form/textField";
 import { validator } from "../../utils/validator";
 import CheckBoxField from "../form/checkBoxField";
+
+import { useAuth } from "../../hooks/useAuth";
+import { useHistory } from "react-router-dom";
 // import * as yup from "yup";
 
 const LoginForm = () => {
+  const { signIn } = useAuth();
+  const history = useHistory();
   const [data, setData] = useState({ email: "", password: "", stayOn: false });
   const [errors, setErrors] = useState({});
   const isValid = Object.keys(errors).length === 0;
@@ -74,11 +79,18 @@ const LoginForm = () => {
     return Object.keys(errors).length === 0; // вернет true - если нет ни одной ошибки, и false - если в объекте errors есть хотя бы одна ошибка
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validate(); // записываем результат выполнения validate()
     if (!isValid) {
       return; // если false - останавливаем отправку формы
+    }
+
+    try {
+      await signIn(data);
+      history.push("/");
+    } catch (error) {
+      setErrors(error);
     }
   };
 
