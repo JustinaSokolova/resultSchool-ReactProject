@@ -1,6 +1,4 @@
-### link for App -
 
-# https://justinasokolova.github.io/resultSchool-ReactProject/
 
 # Getting Started with Create React App
 
