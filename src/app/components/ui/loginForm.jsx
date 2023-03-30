@@ -12,7 +12,7 @@ const LoginForm = () => {
   const history = useHistory();
   const [data, setData] = useState({ email: "", password: "", stayOn: false });
   const [errors, setErrors] = useState({});
-  const isValid = Object.keys(errors).length === 0;
+
   const handleChange = (target) => {
     setData((prevState) => ({
       ...prevState,
@@ -78,6 +78,7 @@ const LoginForm = () => {
     setErrors(errors);
     return Object.keys(errors).length === 0; // вернет true - если нет ни одной ошибки, и false - если в объекте errors есть хотя бы одна ошибка
   };
+  const isValid = Object.keys(errors).length === 0;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -88,9 +89,11 @@ const LoginForm = () => {
 
     try {
       await signIn(data);
-      history.push("/");
+      history.push(
+        history.location.state ? history.location.state.from.pathname : "/"
+      );
     } catch (error) {
-      setErrors(error);
+      setErrors(error.message);
     }
   };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { nanoid } from "nanoid";
 
 const SelectField = ({
   label,
@@ -40,7 +41,7 @@ const SelectField = ({
         </option>
         {optionsArray &&
           optionsArray.map((option) => (
-            <option value={option.value} key={option.value}>
+            <option value={option.value} key={nanoid()}>
               {option.label}
             </option>
           ))}

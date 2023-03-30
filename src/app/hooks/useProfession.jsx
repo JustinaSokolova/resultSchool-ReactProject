@@ -13,24 +13,6 @@ export const ProfessionProvider = ({ children }) => {
   const [isLoading, setLoading] = useState(true);
   const [professions, setProfessions] = useState([]);
   const [error, setError] = useState(null);
-  useEffect(() => {
-    if (error !== null) {
-      toast(error);
-      setError(null);
-    }
-  }, [error]);
-
-  useEffect(() => {
-    getProfessionsList();
-  }, []);
-  function errorCatcher(error) {
-    const { message } = error.response.data;
-    setError(message);
-  }
-
-  function getProfession(id) {
-    return professions.find((p) => p._id === id);
-  }
 
   async function getProfessionsList() {
     try {
@@ -42,9 +24,35 @@ export const ProfessionProvider = ({ children }) => {
     }
   }
 
+  useEffect(() => {
+    getProfessionsList();
+  }, []);
+
+  function getProfession(id) {
+    return professions.find((p) => p._id === id);
+  }
+
+  function errorCatcher(error) {
+    const { message } = error.response.data;
+    setError(message);
+  }
+
+  useEffect(() => {
+    if (error !== null) {
+      toast(error);
+      setError(null);
+    }
+  }, [error]);
+
   return (
     <ProfessionContext.Provider
-      value={{ isLoading, professions, getProfession }}
+      value={{
+        isLoading,
+        professions,
+        getProfession,
+        getProfessionsList,
+        setProfessions,
+      }}
     >
       {children}
     </ProfessionContext.Provider>

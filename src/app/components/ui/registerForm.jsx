@@ -15,6 +15,7 @@ const RegisterForm = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
+    name: "",
     profession: "",
     sex: "male",
     qualities: [],
@@ -65,6 +66,15 @@ const RegisterForm = () => {
         value: 8,
       },
     },
+    name: {
+      isRequired: {
+        message: "Имя обязательно для заполнения",
+      },
+      min: {
+        message: "Имя должно содержать минимум 3 символов",
+        value: 3,
+      },
+    },
     profession: {
       isRequired: {
         message: "Обязательно выберите вашу профессию",
@@ -87,6 +97,7 @@ const RegisterForm = () => {
     setErrors(errors);
     return Object.keys(errors).length === 0; // вернет true - если нет ни одной ошибки, и false - если в объекте errors есть хотя бы одна ошибка
   };
+
   const isValid = Object.keys(errors).length === 0;
 
   const handleSubmit = async (e) => {
@@ -123,6 +134,14 @@ const RegisterForm = () => {
         value={data.value}
         onChange={handleChange}
         error={errors.password}
+      />
+      <TextField
+        label="Имя"
+        type="name"
+        name="name"
+        value={data.name}
+        onChange={handleChange}
+        error={errors.name}
       />
       <SelectField
         label="Выберите Вашу профессию: "

@@ -12,7 +12,7 @@ const UserTable = ({
   userId,
   bookmark,
   onToggleBookmark,
-  onDelete,
+  // onDelete,
   ...rest
 }) => {
   const columns = {
@@ -37,13 +37,13 @@ const UserTable = ({
         />
       ),
     },
-    delete: {
-      component: (user) => (
-        <button className="btn btn-danger" onClick={() => onDelete(user._id)}>
-          Delete
-        </button>
-      ),
-    },
+    // delete: {
+    //   component: (user) => (
+    //     <button className="btn btn-danger" onClick={() => onDelete(user._id)}>
+    //       Delete
+    //     </button>
+    //   ),
+    // },
   };
 
   return (
@@ -63,7 +63,7 @@ UserTable.propTypes = {
   onToggleBookmark: PropTypes.func,
   userId: PropTypes.string,
   bookmark: PropTypes.bool,
-  onDelete: PropTypes.func,
+  // onDelete: PropTypes.func,
 };
 
 export default UserTable;

@@ -14,16 +14,18 @@ export const QualitiesProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [isLoading, setLoading] = useState(true);
   //   const prevState = useRef();
+
+  async function getQualities() {
+    try {
+      const { content } = await qualityService.fetchAll();
+      setQualities(content);
+      setLoading(false);
+    } catch (error) {
+      errorCatcher(error);
+    }
+  }
+
   useEffect(() => {
-    const getQualities = async () => {
-      try {
-        const { content } = await qualityService.fetchAll();
-        setQualities(content);
-        setLoading(false);
-      } catch (error) {
-        errorCatcher(error);
-      }
-    };
     getQualities();
   }, []);
 
@@ -85,7 +87,9 @@ export const QualitiesProvider = ({ children }) => {
       value={{
         qualities,
         getQuality,
+        getQualities,
         isLoading,
+        setQualities,
       }}
     >
       {children}

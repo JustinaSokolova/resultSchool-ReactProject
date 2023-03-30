@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Qualities from "./qualities/quality";
+import Qualities from "./qualities";
 
 const QualitiesCard = ({ data }) => {
   return (
