@@ -1,5 +1,7 @@
 /* eslint-disable indent */
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+
 import Pagination from "../../common/paginationComp";
 import { paginate } from "../../../utils/paginate";
 import PropTypes from "prop-types";
@@ -9,14 +11,19 @@ import SearchStatus from "../../ui/searchStatus";
 import UserTable from "../../ui/userTable";
 import _ from "lodash";
 import SearchUser from "../../common/searchUser";
-import { useUser } from "../../../hooks/useUsers";
-import { useProfessions } from "../../../hooks/useProfession";
-import { useAuth } from "../../../hooks/useAuth";
+
+import {
+  getProfessions,
+  // eslint-disable-next-line comma-dangle
+  getProfessionsLoadingStatus,
+} from "../../../store/professions";
+import { getCurrentUserId, getUsersList } from "../../../store/users";
 
 const UsersListPage = () => {
-  const { users } = useUser();
-  const { currentUser } = useAuth();
-  const { professions, isLoading: professionsLoading } = useProfessions();
+  const users = useSelector(getUsersList());
+  const currentUserId = useSelector(getCurrentUserId());
+  const professions = useSelector(getProfessions());
+  const professionsLoading = useSelector(getProfessionsLoadingStatus());
 
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedProf, setSelectedProf] = useState();
@@ -76,7 +83,7 @@ const UsersListPage = () => {
         ? data.filter((user) => user.profession === selectedProf._id)
         : data;
 
-      return filteredUsers.filter((user) => user._id !== currentUser._id);
+      return filteredUsers.filter((user) => user._id !== currentUserId);
     }
     const filteredUsers = filterUsers(users);
     const count = filteredUsers.length;
